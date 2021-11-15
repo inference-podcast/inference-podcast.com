@@ -1,12 +1,35 @@
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import { InferenceIcon } from 'components/svg/inference-logo';
+import graphcms from 'lib/graphql';
+import {
+  GET_ALL_GUESTS,
+  AllGuests,
+} from 'lib/graphql/query/guests/get-all-guests';
+import clx from 'classnames';
 import BgImage from '../public/imgs/hero-bg.jpg';
 import SerokellLogo from '../public/imgs/serokell-logo.svg';
 import GraphCMSLogo from '../public/imgs/graphcms-logo.svg';
 import SHLogo from '../public/imgs/sh-logo.svg';
 import TDLogo from '../public/imgs/td-logo.svg';
 
-export default function Home() {
+export const getStaticProps: GetStaticProps = async () => {
+  const { guests } = await graphcms.request<AllGuests>(GET_ALL_GUESTS);
+  return {
+    props: {
+      guests,
+    },
+  };
+};
+
+export default function Home(props: { guests: AllGuests['guests'] }) {
+  const guests = props.guests.sort((a, b) => {
+    const aEpisode = a.episodes[0];
+    const bEpisode = b.episodes[0];
+
+    return bEpisode.season < aEpisode.season ? -1 : 1;
+  });
+
   return (
     <div className="relative min-h-screen">
       <div className="relative w-full min-h-screen">
@@ -53,6 +76,61 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </div>
+      </div>
+
+      <h1 className={'my-24 text-white text-4xl text-center'}> Guests </h1>
+
+      <div
+        className={
+          'w-full pb-10 max-w-screen-xl m-auto xl:px-0 md:px-10 sm:px-10'
+        }
+      >
+        <div
+          className={'grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10'}
+        >
+          {guests.map((guest) => (
+            <div
+              key={guest.id}
+              className={'bg-gray-50 rounded-lg text-center shadow-2xl'}
+            >
+              <div className={'relative w-full h-64'}>
+                <Image
+                  src={guest.profileImage.url}
+                  alt={guest.name}
+                  layout={'fill'}
+                  objectFit={'cover'}
+                  objectPosition={'center'}
+                  className={'rounded-t-lg'}
+                />
+              </div>
+              <div
+                className={clx('bg-gradient-to-r text-white py-2', {
+                  'from-yellow-500 to-pink-500': guest.episodes[0].season === 2,
+                  'from-pink-800 to-blue-500': guest.episodes[0].season === 1,
+                })}
+              >
+                Season {guest.episodes[0].season} - Episode{' '}
+                {guest.episodes[0].episodeNumber}
+              </div>
+              <div className={'py-5 px-2'}>
+                <p
+                  className={clx(
+                    'font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r',
+                    {
+                      'from-yellow-500 to-pink-500':
+                        guest.episodes[0].season === 2,
+                      'from-pink-800 to-blue-500':
+                        guest.episodes[0].season === 1,
+                    },
+                  )}
+                >
+                  {guest.name}
+                </p>
+                <p className={'text-gray-600'}>{guest.jobTitle}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
