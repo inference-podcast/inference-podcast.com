@@ -1,5 +1,8 @@
-module.exports = {
+const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
+
+module.exports = withPlugins([[optimizedImages, {}]], {
   images: {
-    domains: ['media.graphcms.com'],
+    disableStaticImages: true,
   },
-};
+});

@@ -7,7 +7,6 @@ import {
   AllGuests,
 } from 'lib/graphql/query/guests/get-all-guests';
 import clx from 'classnames';
-import BgImage from '../public/imgs/hero-bg.jpg';
 import SerokellLogo from '../public/imgs/serokell-logo.svg';
 import GraphCMSLogo from '../public/imgs/graphcms-logo.svg';
 import SHLogo from '../public/imgs/sh-logo.svg';
@@ -33,11 +32,10 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
   return (
     <div className="relative min-h-screen">
       <div className="relative w-full min-h-screen">
-        <Image
-          src={BgImage}
-          layout={'fill'}
-          objectFit={'cover'}
-          objectPosition={'center'}
+        <img
+          src={require('../public/imgs/hero-bg.jpeg')}
+          alt={'Inference Podcast background'}
+          className={'w-full h-full absolute top-0 left-0'}
         />
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
           <div className={'text-center'}>
@@ -51,28 +49,28 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={SerokellLogo.src} alt="Serokell" className="h-12" />
+                <img src={SerokellLogo} alt="Serokell" className="h-12" />
               </a>
               <a
                 href={'https://graphcms.com'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={GraphCMSLogo.src} alt="GraphCMS" className="h-12" />
+                <img src={GraphCMSLogo} alt="GraphCMS" className="h-12" />
               </a>
               <a
                 href={'https://www.schrodinger-hat.it'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={SHLogo.src} alt="Schrödinger Hat" className="h-8" />
+                <img src={SHLogo} alt="Schrödinger Hat" className="h-8" />
               </a>
               <a
                 href={'https://tomorrowdevs.com/'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={TDLogo.src} alt="TomorrowDevs" className="h-6" />
+                <img src={TDLogo} alt="TomorrowDevs" className="h-6" />
               </a>
             </div>
           </div>
@@ -95,13 +93,12 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
               className={'bg-gray-50 rounded-lg text-center shadow-2xl'}
             >
               <div className={'relative w-full h-64'}>
-                <Image
+                <img
                   src={guest.profileImage.url}
                   alt={guest.name}
-                  layout={'fill'}
-                  objectFit={'cover'}
-                  objectPosition={'center'}
-                  className={'rounded-t-lg'}
+                  className={
+                    'absolute w-full h-full top-0 left-0 object-cover rounded-t-lg'
+                  }
                 />
               </div>
               <div
