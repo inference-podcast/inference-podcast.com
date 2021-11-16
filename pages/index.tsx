@@ -7,10 +7,6 @@ import {
   AllGuests,
 } from 'lib/graphql/query/guests/get-all-guests';
 import clx from 'classnames';
-import SerokellLogo from '../public/imgs/serokell-logo.svg';
-import GraphCMSLogo from '../public/imgs/graphcms-logo.svg';
-import SHLogo from '../public/imgs/sh-logo.svg';
-import TDLogo from '../public/imgs/td-logo.svg';
 
 export const getStaticProps: GetStaticProps = async () => {
   const { guests } = await graphcms.request<AllGuests>(GET_ALL_GUESTS);
@@ -49,28 +45,44 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={SerokellLogo} alt="Serokell" className="h-12" />
+                <img
+                  src={'/imgs/serokell-logo.svg'}
+                  alt="Serokell"
+                  className="h-12"
+                />
               </a>
               <a
                 href={'https://graphcms.com'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={GraphCMSLogo} alt="GraphCMS" className="h-12" />
+                <img
+                  src={'/imgs/graphcms-logo.svg'}
+                  alt="GraphCMS"
+                  className="h-12"
+                />
               </a>
               <a
                 href={'https://www.schrodinger-hat.it'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={SHLogo} alt="Schrödinger Hat" className="h-8" />
+                <img
+                  src={'/imgs/sh-logo.svg'}
+                  alt="Schrödinger Hat"
+                  className="h-8"
+                />
               </a>
               <a
                 href={'https://tomorrowdevs.com/'}
                 target={'_blank'}
                 className={'flex justify-center items-center'}
               >
-                <img src={TDLogo} alt="TomorrowDevs" className="h-6" />
+                <img
+                  src={'/imgs/td-logo.svg'}
+                  alt="TomorrowDevs"
+                  className="h-6"
+                />
               </a>
             </div>
           </div>
