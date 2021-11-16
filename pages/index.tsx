@@ -91,11 +91,7 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
 
       <h1 className={'my-24 text-white text-4xl text-center'}> Guests </h1>
 
-      <div
-        className={
-          'w-full pb-10 max-w-screen-xl m-auto xl:px-0 md:px-10 sm:px-10'
-        }
-      >
+      <div className={'w-full pb-10 max-w-screen-xl px-10 m-auto'}>
         <div
           className={'grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10'}
         >
