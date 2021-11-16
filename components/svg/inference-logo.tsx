@@ -1,8 +1,8 @@
 import { VFC } from 'react';
 
 type IconProps = {
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
 };
 
 export const InferenceIcon: VFC<IconProps> = (props) => (

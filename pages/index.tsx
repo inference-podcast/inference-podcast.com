@@ -36,7 +36,7 @@ export default function Home(props: { guests: AllGuests['guests'] }) {
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
           <div className={'text-center'}>
             <div className={'flex justify-center items-center'}>
-              <InferenceIcon width={450} height={100} />
+              <InferenceIcon width={'80%'} height={100} />
             </div>
             <p className="text-white mt-4"> made possible by </p>
             <div className="grid grid-cols-1 gap-8 mt-12">
